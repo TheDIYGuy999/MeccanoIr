@@ -1,6 +1,6 @@
 /*
   MeccanoIr.h - Not a "real" library for MECCANO / ERECTOR IR devices - just put it in the same folder as your sketch.
-  Created by TheDIYGuy999 June 2016
+  Created by TheDIYGuy999 September 2016
   Released into the public domain.
 */
 
