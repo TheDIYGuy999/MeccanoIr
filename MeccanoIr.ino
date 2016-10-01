@@ -1,5 +1,5 @@
 /* Example sketch for the MECCANO / ERECTOR IR LIBRARY
-Created by TheDIYGuy999, September 2016
+  Created by TheDIYGuy999, September 2016
 */
 
 //
@@ -17,9 +17,9 @@ Created by TheDIYGuy999, September 2016
 //
 
 short joystickA;
-short joystickB; 
-short joystickC; 
-short joystickD; 
+short joystickB;
+short joystickC;
+short joystickD;
 
 //
 // =======================================================================================================
@@ -38,10 +38,10 @@ void setup() {
 //
 
 void readJoysticks() {
-joystickA = map(analogRead(A0), 0, 1023, 0, 100);
-joystickB = map(analogRead(A1), 0, 1023, 0, 100);
-joystickC = map(analogRead(A2), 0, 1023, 0, 100);
-joystickD = map(analogRead(A3), 0, 1023, 0, 100); 
+  joystickA = map(analogRead(A0), 0, 1023, 0, 100);
+  joystickB = map(analogRead(A1), 0, 1023, 0, 100);
+  joystickC = map(analogRead(A2), 0, 1023, 0, 100);
+  joystickD = map(analogRead(A3), 0, 1023, 0, 100);
 }
 
 //
@@ -51,18 +51,14 @@ joystickD = map(analogRead(A3), 0, 1023, 0, 100);
 //
 
 void transmitMeccanoIr() {
-
-  if (joystickA > 90) buildIrSignal(IrSignalAplus, (sizeof(IrSignalAplus) / sizeof(byte))); // A +
-  if (joystickA < 10) buildIrSignal(IrSignalAminus, (sizeof(IrSignalAminus) / sizeof(byte))); // A -
-
-  if (joystickB > 90) buildIrSignal(IrSignalBplus, (sizeof(IrSignalBplus) / sizeof(byte))); // B +
-  if (joystickB < 10) buildIrSignal(IrSignalBminus, (sizeof(IrSignalBminus) / sizeof(byte))); // B -
-
-  if (joystickC > 90) buildIrSignal(IrSignalCplus, (sizeof(IrSignalCplus) / sizeof(byte))); // C +
-  if (joystickC < 10) buildIrSignal(IrSignalCminus, (sizeof(IrSignalCminus) / sizeof(byte))); // C -
-
-  if (joystickD > 90) buildIrSignal(IrSignalDplus, (sizeof(IrSignalDplus) / sizeof(byte))); // D +
-  if (joystickD < 10) buildIrSignal(IrSignalDminus, (sizeof(IrSignalDminus) / sizeof(byte))); // D -
+  if (joystickA < 10) buildIrSignal(1); // A +
+  if (joystickA > 90) buildIrSignal(2); // A -
+  if (joystickB < 10) buildIrSignal(3); // B +
+  if (joystickB > 90) buildIrSignal(4); // B -
+  if (joystickC < 10) buildIrSignal(5); // C +
+  if (joystickC > 90) buildIrSignal(6); // C -
+  if (joystickD < 10) buildIrSignal(7); // D +
+  if (joystickD > 90) buildIrSignal(8); // D -
 }
 
 //
