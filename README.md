@@ -5,6 +5,9 @@ This is not a "real" library. Just put it in jour sketch folder
 - Same functionality as the original MECCANO transmitter (just forward, backwards, stop).
 - The pulse arrays are stored in PROGMEM in order to save precious RAM
 
+New in V 1.1:
+- Stop IR codes added in order to allow faster motor stop
+
 ## Usage:
 
 See [example](https://github.com/TheDIYGuy999/MeccanoIr/blob/master/MeccanoIr.ino).

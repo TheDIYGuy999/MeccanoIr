@@ -57,6 +57,25 @@ const byte IrSignalAminus[] PROGMEM = {
   120, 240
 };
 
+// A OFF IR code---------------------------
+const byte IrSignalAoff[] PROGMEM = {
+  // ON, OFF (in 10's of microseconds)
+  180, 180,
+  30, 30,
+  30, 30,
+  30, 60, //
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 60, //
+  30, 30,
+  30, 30,
+  30, 30,
+  120, 240
+};
+
 // CHANNEL B *************************************************
 
 // B + IR code---------------------------
@@ -90,6 +109,25 @@ const byte IrSignalBminus[] PROGMEM = {
   30, 30,
   30, 30,
   30, 60, //
+  30, 30,
+  30, 60, //
+  30, 30,
+  30, 30,
+  120, 240
+};
+
+// B OFF IR code---------------------------
+const byte IrSignalBoff[] PROGMEM = {
+  // ON, OFF (in 10's of microseconds)
+  180, 180,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 60, //
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
   30, 30,
   30, 60, //
   30, 30,
@@ -137,6 +175,25 @@ const byte IrSignalCminus[] PROGMEM = {
   120, 240
 };
 
+// C OFF IR code---------------------------
+const byte IrSignalCoff[] PROGMEM = {
+  // ON, OFF (in 10's of microseconds)
+  180, 180,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 60, //
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 60, //
+  30, 30,
+  120, 240
+};
+
 // CHANNEL D *************************************************
 
 // D + IR code---------------------------
@@ -177,6 +234,25 @@ const byte IrSignalDminus[] PROGMEM = {
   120, 240
 };
 
+// D OFF IR code---------------------------
+const byte IrSignalDoff[] PROGMEM = {
+  // ON, OFF (in 10's of microseconds)
+  180, 180,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 60, //
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 30,
+  30, 60, //
+  120, 240
+};
+
 //
 // =======================================================================================================
 // IR SIGNAL GENERATION
@@ -192,12 +268,19 @@ void buildIrSignal(byte channel) {
   for (int i = 0; i < s; i++) {
     if (channel == 1) IrSignal[i] = pgm_read_byte(&IrSignalAplus[i]); // Channel A+
     if (channel == 2) IrSignal[i] = pgm_read_byte(&IrSignalAminus[i]); // Channel A-
-    if (channel == 3) IrSignal[i] = pgm_read_byte(&IrSignalBplus[i]); // Channel B+
-    if (channel == 4) IrSignal[i] = pgm_read_byte(&IrSignalBminus[i]); // Channel B-
-    if (channel == 5) IrSignal[i] = pgm_read_byte(&IrSignalCplus[i]); // Channel C+
-    if (channel == 6) IrSignal[i] = pgm_read_byte(&IrSignalCminus[i]); // Channel C-
-    if (channel == 7) IrSignal[i] = pgm_read_byte(&IrSignalDplus[i]); // Channel D+
-    if (channel == 8) IrSignal[i] = pgm_read_byte(&IrSignalDminus[i]); // Channel D-
+    if (channel == 3) IrSignal[i] = pgm_read_byte(&IrSignalAoff[i]); // Channel A OFF
+
+    if (channel == 4) IrSignal[i] = pgm_read_byte(&IrSignalBplus[i]); // Channel B+
+    if (channel == 5) IrSignal[i] = pgm_read_byte(&IrSignalBminus[i]); // Channel B-
+    if (channel == 6) IrSignal[i] = pgm_read_byte(&IrSignalBoff[i]); // Channel B OFF
+
+    if (channel == 7) IrSignal[i] = pgm_read_byte(&IrSignalCplus[i]); // Channel C+
+    if (channel == 8) IrSignal[i] = pgm_read_byte(&IrSignalCminus[i]); // Channel C-
+    if (channel == 9) IrSignal[i] = pgm_read_byte(&IrSignalCoff[i]); // Channel C OFF
+
+    if (channel == 10) IrSignal[i] = pgm_read_byte(&IrSignalDplus[i]); // Channel D+
+    if (channel == 11) IrSignal[i] = pgm_read_byte(&IrSignalDminus[i]); // Channel D-
+    if (channel == 12) IrSignal[i] = pgm_read_byte(&IrSignalDoff[i]); // Channel D OFF
   }
 
   // 2. Generate the IR pulses ******
@@ -205,7 +288,7 @@ void buildIrSignal(byte channel) {
     // HIGH (38KHz modulated) ----
     long microsecs = IrSignal[i] * 10;
     while (microsecs > 0) {
-      
+
       digitalWrite(3, HIGH);
 #if F_CPU == 16000000 // 16MHz CPU
       delayMicroseconds(10);
@@ -221,7 +304,7 @@ void buildIrSignal(byte channel) {
     delayMicroseconds(IrSignal[i + 1] * 10);
 
   } // End of for loop
-  delay(70);
+  delay(30);
 }
 
 #endif
