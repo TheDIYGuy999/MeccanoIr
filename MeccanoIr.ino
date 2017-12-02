@@ -2,7 +2,7 @@
   Created by TheDIYGuy999, September - November 2016
 */
 
-const float codeVersion = 1.1; // Software revision
+const float codeVersion = 1.2; // Software revision
 
 //
 // =======================================================================================================
