@@ -4,6 +4,7 @@ This is not a "real" library. Just put it in jour sketch folder
 - Four channels (A, B, C, D)
 - Same functionality as the original MECCANO transmitter (just forward, backwards, stop).
 - The pulse arrays are stored in PROGMEM in order to save precious RAM
+- Please note, that the pin numbers are hardcoded! Change them if needed.
 
 New in V 1.1:
 - Stop IR codes added in order to allow faster motor stop
