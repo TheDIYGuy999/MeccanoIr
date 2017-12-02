@@ -8,6 +8,9 @@ This is not a "real" library. Just put it in jour sketch folder
 New in V 1.1:
 - Stop IR codes added in order to allow faster motor stop
 
+New in V 1.2:
+- Support for STM32F1 ARM MCU added
+
 ## Usage:
 
 See [example](https://github.com/TheDIYGuy999/MeccanoIr/blob/master/MeccanoIr.ino).
